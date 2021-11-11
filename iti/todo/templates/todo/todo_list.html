@@ -1,0 +1,28 @@
+{% extends 'main/base_layout.html' %}
+
+{% block main-content %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">View</th>
+              <th scope="col">Update</th>
+              <th scope="col">delete</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for task in task_list %}
+            <tr>
+              <th scope="row">{{ task.name }}</th>
+              <td>{{ task.description  | truncatewords:6 }}</td>
+              <td><a href="{% url 'todo:todo-detail' task.id %}" class="btn btn-primary" > View Details </a></td>
+              <td><a href="{% url 'todo:todo-update' task.id %}" class="btn btn-success" > Update Task </a></td>
+              <td><a href="{% url 'todo:todo-delete' task.id %}" class="btn btn-danger" > Delete Task </a></td>
+            </tr>
+            {% empty %}
+                 <tr>Sorry, no tasks in this list.</tr>
+          {% endfor %}
+          </tbody>
+        </table>
+{% endblock %}
