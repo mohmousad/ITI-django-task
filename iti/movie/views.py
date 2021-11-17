@@ -3,9 +3,6 @@ from .models import Movie
 from .forms import MovieForm
 
 
-# from django.views.decorators.csrf import csrf_exempt
-
-
 def movie_index(request):
     all_movies = Movie.objects.all()
     return render(request, 'movie/movie_index.html', context={'movies': all_movies})
@@ -38,7 +35,6 @@ def movie_create(request):
 
     print(request.FILES)
 
-    # POST REQUEST HANDLING
     if request.method == 'POST':
 
         form = MovieForm(data=request.POST, files=request.FILES)
@@ -47,7 +43,6 @@ def movie_create(request):
             form.save()
             return redirect('movie:movie-index')
 
-    # GET REQUEST HANDLING
     return render(request, 'movie/movie_create.html', context={'form': form})
 
 
@@ -56,7 +51,7 @@ def movie_update(request, pk):
     form = MovieForm(instance=movie)
 
     if request.method == 'POST':
-        form = MovieForm(data=request.POST, instance=movie)
+        form = MovieForm(data=request.POST, files=request.FILES, instance=movie)
         if form.is_valid():
             form.save()
             return redirect('movie:movie-detail', pk=movie.id)

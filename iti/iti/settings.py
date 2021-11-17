@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'movie',
-    'cinema'
+    'cinema',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,15 @@ STATIC_ROOT = 'D:/ITI/Learning/Django/Day1-4-Nov/Pycharm-Project/iti/static_root
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "main_static"),
 ]
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = 'D:/ITI/Learning/Django/Day1-4-Nov/Pycharm-Project/iti/media_root'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/movie/index'
+LOGOUT_REDIRECT_URL = '/movie/index'
