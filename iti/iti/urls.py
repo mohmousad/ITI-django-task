@@ -15,9 +15,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from todo.views import index
+from iti.views import project_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todo/', include('todo.urls'))
-
+    path('index', project_index, name='project-index'),
+    path('todo/', include('todo.urls')),
+    path('movie/', include('movie.urls'))
 ]
